@@ -1,21 +1,25 @@
 {
-  "inbounds": [{
-    "port": 8080,
-    "protocol": "vless",
-    "settings": {
-      "clients": [{
-        "id": "65c1882d-bb15-4374-9052-6cd7fbd0f2f5"
-      }],
-      "decryption": "none"
-    },
-    "streamSettings": {
-      "network": "ws",
-      "wsSettings": {
-        "path": "/vless"
+  "inbounds": [
+    {
+      "port": 8080,
+      "protocol": "vless",
+      "settings": {
+        "clients": [{"id": "65c1882d-bb15-4374-9052-6cd7fbd0f2f5"}],
+        "decryption": "none",
+        "fallbacks": [{"dest": 8081}]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {"path": "/vless"}
       }
+    },
+    {
+      "port": 8081,
+      "listen": "127.0.0.1",
+      "protocol": "dokodemo-door",
+      "settings": {"address": "127.0.0.1"},
+      "streamSettings": {"network": "tcp"}
     }
-  }],
-  "outbounds": [{
-    "protocol": "freedom"
-  }]
+  ],
+  "outbounds": [{"protocol": "freedom"}]
 }
